@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">First App</string>
+    <string name="country">Country</string>
+    <string name="birth_date">Birth Date</string>
+    <string name="last_name">Last name</string>
+    <string name="first_name">First name</string>
+    <string name="Button">Button</string>
+    <string name="what_do_you_want_on_your_burger">What do you want on your burger?</string>
+    <string name="pork">Pork</string>
+    <string name="beef">Beef</string>
+    <string name="chicken">Chicken</string>
+    <string name="test">TEST</string>
+    <string name="order">Order</string>
+    <string name="salad">Salad</string>
+    <string name="cheese">Cheese</string>
+    <string name="onions">Onions</string>
+</resources>
