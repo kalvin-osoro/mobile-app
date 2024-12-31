@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.viewpager.widget.ViewPager
+import androidx.viewpager2.widget.ViewPager2
 import com.example.firstapp.databinding.FragmentFirstBinding
 
 // TODO: Rename parameter arguments, choose names that match
@@ -30,10 +32,30 @@ class FirstFragment : Fragment() {
 //        return inflater.inflate(R.layout.fragment_first, container, false)
         _binding = FragmentFirstBinding.inflate(inflater)
         return binding.root
+
     }
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val images = listOf(
+            R.drawable.img1,
+            R.drawable.img2,
+            R.drawable.img3,
+            R.drawable.img4
+        )
+
+        val adapter = ViewpagerAdapter(images)
+        binding.viewPager.adapter = adapter
+
+        binding.viewPager.orientation = ViewPager2.ORIENTATION_VERTICAL
+
+        binding.viewPager.beginFakeDrag()
+        binding.viewPager.fakeDragBy(-10f)
+        binding.viewPager.endFakeDrag()
+
+
+
     }
 }

@@ -11,10 +11,6 @@ class TodoAdapter(
     var todos: List<Todo>
 ) : RecyclerView.Adapter<TodoAdapter.TodoViewHolder>()  {
 
-//    private lateinit var binding: ItemTodoBinding
-
-//    inner class TodoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
-
     inner class TodoViewHolder(val binding: ItemTodoBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TodoViewHolder {
