@@ -5,9 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.viewpager.widget.ViewPager
 import androidx.viewpager2.widget.ViewPager2
 import com.example.firstapp.databinding.FragmentFirstBinding
+import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -49,13 +52,39 @@ class FirstFragment : Fragment() {
         val adapter = ViewpagerAdapter(images)
         binding.viewPager.adapter = adapter
 
-        binding.viewPager.orientation = ViewPager2.ORIENTATION_VERTICAL
+        TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
+            tab.text = "Tab ${position + 1}"
 
-        binding.viewPager.beginFakeDrag()
-        binding.viewPager.fakeDragBy(-10f)
-        binding.viewPager.endFakeDrag()
+        }.attach()
+
+        binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+            override fun onTabSelected(tab: TabLayout.Tab?) {
+                Toast.makeText(requireContext(), "Selected ${tab?.text}", Toast.LENGTH_SHORT).show()
+
+            }
+
+            override fun onTabUnselected(tab: TabLayout.Tab?) {
+                Toast.makeText(requireContext(), "Unselected ${tab?.text}", Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onTabReselected(tab: TabLayout.Tab?) {
+                Toast.makeText(requireContext(), "Reselected ${tab?.text}", Toast.LENGTH_SHORT).show()
+            }
+        })
+
+//        binding.viewPager.orientation = ViewPager2.ORIENTATION_VERTICAL
+//
+//        binding.viewPager.beginFakeDrag()
+//        binding.viewPager.fakeDragBy(-10f)
+//        binding.viewPager.endFakeDrag()
 
 
 
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
 }
