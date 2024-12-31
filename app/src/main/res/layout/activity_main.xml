@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="16dp">
 
     <EditText
         android:id="@+id/etFirstName"
@@ -140,6 +141,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cbSalad" />
 
+    <Button
+        android:id="@+id/btnRecyclerView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/recycler_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnOrder"
+        app:layout_constraintTop_toBottomOf="@+id/cbSalad" />
+
     <TextView
         android:id="@+id/tvOrder"
         android:layout_width="wrap_content"
@@ -147,6 +157,78 @@
         android:textSize="26sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnOrder" />
+
+    <Button
+        android:id="@+id/btnShowToast"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/show_toast"
+        app:layout_constraintEnd_toStartOf="@+id/btnCustomToast"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvOrder" />
+
+    <Button
+        android:id="@+id/btnCustomToast"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/custom_toast"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnOpenActivity"
+        app:layout_constraintStart_toEndOf="@+id/btnShowToast"
+        app:layout_constraintTop_toBottomOf="@+id/tvOrder" />
+
+    <Button
+        android:id="@+id/btnOpenActivity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/start_activity"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnCustomToast"
+        app:layout_constraintTop_toBottomOf="@+id/tvOrder" />
+
+    <Button
+        android:id="@+id/btnDialog1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/dialogue_1"
+        app:layout_constraintStart_toStartOf="@+id/btnShowToast"
+        app:layout_constraintTop_toBottomOf="@+id/btnShowToast" />
+
+
+    <Button
+        android:id="@+id/btnDialog2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/dialog_2"
+        app:layout_constraintStart_toStartOf="@+id/btnCustomToast"
+        app:layout_constraintTop_toBottomOf="@+id/btnCustomToast" />
+
+    <Button
+        android:id="@+id/btnDialog3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/dialog_3"
+        app:layout_constraintStart_toStartOf="@+id/btnOpenActivity"
+        app:layout_constraintTop_toBottomOf="@+id/btnOpenActivity" />
+
+    <Button
+        android:id="@+id/btnLaunchFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/go_to_fragment"
+        app:layout_constraintStart_toStartOf="@+id/btnDialog1"
+        app:layout_constraintTop_toBottomOf="@+id/btnDialog1" />
+
+
+    <Spinner
+        android:id="@+id/spMonths"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:entries="@array/months"
+        android:padding="2dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnLaunchFragment"
+        app:layout_constraintTop_toBottomOf="@+id/btnDialog2" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
