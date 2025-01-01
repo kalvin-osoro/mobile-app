@@ -1,6 +1,8 @@
 package com.example.firstapp
 
 import android.Manifest
+import android.app.NotificationChannel
+import android.app.NotificationManager
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
@@ -20,7 +22,10 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.compose.ui.graphics.Color
 import androidx.core.app.ActivityCompat
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
 
 import com.example.firstapp.databinding.ActivityMainBinding
 import com.example.firstapp.databinding.CustomToastBinding
@@ -187,7 +192,6 @@ class MainActivity : AppCompatActivity() {
                 startActivity(it)
             }
         }
-
 
     }
 

@@ -35,6 +35,12 @@ class FragmentActivity : AppCompatActivity() {
             isVisible = true
         }
 
+        if (intent.getStringExtra("navigate_to") == "SecondFragment") {
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.flFragment, SecondFragment())
+                .commit()
+        }
+
     }
 
     private fun setCurrentFragment(fragment: Fragment) =
