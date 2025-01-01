@@ -60,5 +60,11 @@
     <string name="messages">Messages</string>
     <string name="profile">Profile</string>
     <string name="third_fragment">Third Fragment</string>
+    <string name="activity">ACTIVITY</string>
+    <string name="item_1">Item 1</string>
+    <string name="item_2">Item 2</string>
+    <string name="item_3">Item 3</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
 
 </resources>
