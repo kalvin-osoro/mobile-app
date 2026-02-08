@@ -1,5 +1,6 @@
 package com.example.firstapp
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -32,5 +33,31 @@ class ThirdFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val sharedPref = activity?.getSharedPreferences("myPref", Context.MODE_PRIVATE)
+        val editor = sharedPref?.edit()
+
+        binding.btnSave.setOnClickListener() {
+            val name = binding.etName.text.toString()
+            val age = binding.etAge.text.toString().toInt()
+            val isAdult = binding.cbAdult.isChecked
+
+            editor?.apply {
+                putString("name", name)
+                putInt("age", age)
+                putBoolean("isAdult", isAdult)
+                apply()
+            }
+        }
+
+        binding.btnLoad.setOnClickListener() {
+            val name = sharedPref?.getString("name", null)
+            val age = sharedPref?.getInt("age", 0)
+            val isAdult = sharedPref?.getBoolean("isAdult", false) ?:false
+
+            binding.etName.setText(name)
+            binding.etAge.setText(age.toString())
+            binding.cbAdult.isChecked = isAdult
+        }
     }
 }

@@ -3,7 +3,7 @@
     <string name="country">Country</string>
     <string name="birth_date">Birth Date</string>
     <string name="last_name">Last name</string>
-    <string name="first_name">First name</string>
+    <string name="first_name">Name</string>
     <string name="Button">Button</string>
     <string name="what_do_you_want_on_your_burger">What do you want on your burger?</string>
     <string name="pork">Pork</string>
@@ -60,11 +60,9 @@
     <string name="messages">Messages</string>
     <string name="profile">Profile</string>
     <string name="third_fragment">Third Fragment</string>
-    <string name="activity">ACTIVITY</string>
+    <string name="age">age</string>
     <string name="item_1">Item 1</string>
     <string name="item_2">Item 2</string>
     <string name="item_3">Item 3</string>
-    <string name="open">Open</string>
-    <string name="close">Close</string>
 
 </resources>
