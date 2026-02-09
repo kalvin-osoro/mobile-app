@@ -193,6 +193,13 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        // Launch Library activity
+        binding.btnLibrary.setOnClickListener() {
+            Intent(this, LibraryActivity::class.java).also {
+                startActivity(it)
+            }
+        }
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
