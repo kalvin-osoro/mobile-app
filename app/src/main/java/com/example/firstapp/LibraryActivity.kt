@@ -1,21 +1,16 @@
 package com.example.firstapp
 
 import android.os.Bundle
-import android.widget.Toast
+import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.firstapp.data.LibraryItem
-import com.example.firstapp.databinding.ActivityLibraryBinding
-import com.google.android.material.tabs.TabLayout
+import com.example.firstapp.ui.LibraryScreen
+import com.example.firstapp.ui.theme.FirstAppTheme
 
 class LibraryActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityLibraryBinding
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityLibraryBinding.inflate(layoutInflater)
-        setContentView(binding.root)
 
         val items = listOf(
             LibraryItem("Chill Vibes", "Playlist • 24 songs", "https://lh3.googleusercontent.com/aida-public/AB6AXuAPdTsiPZKoyLsiOuZsrk4ed_2BuYE8jwvNkXNbHJVr8w3VasDKKKXvnt6JAFeCBpYTwDk5vaxgcrt1zCWLyAd4K2PxEyd6trN8sekOzvHhZh5a6RbIkrq8riCxJsBwwaVdbAGH0OFa3yj86C767s_ffJCQHGIuHW-LQyzCkMkg67T00Z_vQrdUO4C99d0BlHxHK7DOnUSH-pWVMp61HfkFkN33ER9_QsdBUUAHVgFiTNLklFG7SjomOf3LbDEpdxvb_rsUIvgylIo"),
@@ -26,33 +21,10 @@ class LibraryActivity : AppCompatActivity() {
             LibraryItem("Urban Dreams", "Album", "https://lh3.googleusercontent.com/aida-public/AB6AXuCgYLLMhh8r8CkHYqZoiCD_8qvEysfigybLxJNDSX1GNgQqgPa7ew43D92e5KyioidRvShGv0E8mYGHntZXf1Dq3-eWyez4t7axn_7duf-Wi_N8yZ2RXzA9u0awAL9NcEAl1qgby4bWJ4KbKW1XZ2wfzaS4ta2ltGinsEfolfyPOKn29UXGDIs_Px5GNYkya1xqG9yhWxOhpEfpBz2PXy9Lmx-poheFF_jpxUBc3hcc64w4G6uGdNhxeoUCRWw8g2IESlzzA6uKfkQ")
         )
 
-        val adapter = LibraryAdapter(items)
-        binding.rvLibrary.layoutManager = LinearLayoutManager(this)
-        binding.rvLibrary.adapter = adapter
-
-        binding.bottomNav.selectedItemId = R.id.nav_library
-
-        // Listeners for Tabs
-        binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
-            override fun onTabSelected(tab: TabLayout.Tab?) {
-                Toast.makeText(this@LibraryActivity, "Selected: ${tab?.text}", Toast.LENGTH_SHORT).show()
+        setContent {
+            FirstAppTheme {
+                LibraryScreen(items = items)
             }
-            override fun onTabUnselected(tab: TabLayout.Tab?) {}
-            override fun onTabReselected(tab: TabLayout.Tab?) {}
-        })
-
-        // Listeners for Bottom Navigation
-        binding.bottomNav.setOnItemSelectedListener { item ->
-            when(item.itemId) {
-                R.id.nav_home -> Toast.makeText(this, "Home", Toast.LENGTH_SHORT).show()
-                R.id.nav_search -> Toast.makeText(this, "Search", Toast.LENGTH_SHORT).show()
-                R.id.nav_library -> Toast.makeText(this, "Library", Toast.LENGTH_SHORT).show()
-            }
-            true
-        }
-
-        binding.fabAdd.setOnClickListener {
-            Toast.makeText(this, "Add new item", Toast.LENGTH_SHORT).show()
         }
     }
 }
