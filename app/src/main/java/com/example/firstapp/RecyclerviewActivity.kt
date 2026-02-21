@@ -1,43 +1,43 @@
 package com.example.firstapp
 
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
+import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.firstapp.databinding.ActivityRecyclerviewBinding
+import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.remember
+import com.example.firstapp.ui.TodoScreen
+import com.example.firstapp.ui.theme.FirstAppTheme
 
 class RecyclerviewActivity : AppCompatActivity() {
-
-    private lateinit var binding: ActivityRecyclerviewBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = ActivityRecyclerviewBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        setContent {
+            FirstAppTheme {
+                val todoList = remember {
+                    mutableStateListOf(
+                        Todo("Follow AndroidDevs", false),
+                        Todo("Learn recycler view", false),
+                        Todo("Eat", false),
+                        Todo("Sleep", false),
+                        Todo("Learn", false)
+                    )
+                }
 
-        var todoList = mutableListOf(
-            Todo("Follow AndroidDevs", false),
-            Todo("Learn recycler view", false),
-            Todo("Eat", false),
-            Todo("Sleep", false),
-            Todo("Learn", false)
-        )
-
-        val adapter = TodoAdapter(todoList)
-        binding.rvTodos.adapter = adapter
-        binding.rvTodos.layoutManager = LinearLayoutManager(this)
-
-        binding.btnAdd.setOnClickListener() {
-            val title = binding.etTodo.text.toString()
-            val todo = Todo(title, false)
-            todoList.add(todo)
-            adapter.notifyItemInserted(todoList.size - 1)
+                TodoScreen(
+                    todoList = todoList,
+                    onAddTodo = { title ->
+                        todoList.add(Todo(title, false))
+                    },
+                    onCheckedChange = { todo, isChecked ->
+                        val index = todoList.indexOf(todo)
+                        if (index != -1) {
+                            todoList[index] = todo.copy(isChecked = isChecked)
+                        }
+                    }
+                )
+            }
         }
-
-
-
     }
 }
