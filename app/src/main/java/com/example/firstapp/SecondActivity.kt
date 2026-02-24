@@ -1,56 +1,35 @@
 package com.example.firstapp
 
-import android.app.NotificationChannel
-import android.app.NotificationManager
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
-import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.NotificationCompat
-import androidx.core.app.NotificationManagerCompat
-import com.example.firstapp.databinding.ActivitySecondBinding
+import com.example.firstapp.ui.SecondScreen
+import com.example.firstapp.ui.theme.FirstAppTheme
 
 class SecondActivity : AppCompatActivity() {
 
-    private lateinit var binding:ActivitySecondBinding
-
-    val CHANNEL_ID = "channelID"
-    val CHANNEL_NAME = "channelName"
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivitySecondBinding.inflate(layoutInflater)
-        setContentView(binding.root)
 
-        val person = intent.getSerializableExtra("EXTRA_PERSON") as Person
+        val person = if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU) {
+            intent.getSerializableExtra("EXTRA_PERSON", Person::class.java)
+        } else {
+            intent.getSerializableExtra("EXTRA_PERSON") as? Person
+        } ?: Person("", "", "", "")
 
-        binding.tvSecondActivity.text = person.toString()
-
-        //Launch third activity
-        binding.btnLaunchThird.setOnClickListener() {
-            Intent(this, ThirdActivity::class.java).also {
-                startActivity(it)
+        setContent {
+            FirstAppTheme {
+                SecondScreen(
+                    person = person,
+                    onBackClick = { finish() },
+                    onLaunchThirdClick = {
+                        Intent(this, ThirdActivity::class.java).also {
+                            startActivity(it)
+                        }
+                    }
+                )
             }
-
-        }
-
-        binding.btnBack.setOnClickListener() {
-            finish()
-        }
-
-    }
-
-    fun createNotificationChannel() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val channel = NotificationChannel(CHANNEL_ID, CHANNEL_NAME,
-                NotificationManager.IMPORTANCE_DEFAULT).apply {
-
-                lightColor = android.graphics.Color.GREEN
-                enableLights(true)
-            }
-            val manager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
-            manager.createNotificationChannel(channel)
         }
     }
 }
