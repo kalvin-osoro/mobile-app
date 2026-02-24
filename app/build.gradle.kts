@@ -1,18 +1,27 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    alias(libs.plugins.compose.compiler)
     alias(libs.plugins.hilt)
     alias(libs.plugins.ksp)
 }
 
 android {
     namespace = "com.example.firstapp"
-    compileSdk = 35
-
+    compileSdk =
+        libs.versions.compile.sdk
+            .get()
+            .toInt()
     defaultConfig {
         applicationId = "com.example.firstapp"
-        minSdk = 24
-        targetSdk = 34
+        minSdk =
+            libs.versions.min.sdk
+            .get()
+            .toInt()
+        targetSdk =
+            libs.versions.compile.sdk
+                .get()
+                .toInt()
         versionCode = 1
         versionName = "1.0"
 
@@ -41,9 +50,6 @@ android {
     }
     buildFeatures {
         compose = true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
     }
     packaging {
         resources {
