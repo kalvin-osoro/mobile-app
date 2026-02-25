@@ -178,14 +178,14 @@ fun LibraryItemRow(item: LibraryItem, index: Int) {
             else -> R.drawable.img4
         }
 
-        AsyncImage(
-            model = item.imageUrl,
-            placeholder = painterResource(id = placeholderResId),
-            error = painterResource(id = placeholderResId),
-            contentDescription = null,
-            modifier = imageModifier,
-            contentScale = ContentScale.Crop
-        )
+//        AsyncImage(
+//            model = item.imageUrl,
+//            placeholder = painterResource(id = placeholderResId),
+//            error = painterResource(id = placeholderResId),
+//            contentDescription = null,
+//            modifier = imageModifier,
+//            contentScale = ContentScale.Crop
+//        )
 
         Column(
             modifier = Modifier

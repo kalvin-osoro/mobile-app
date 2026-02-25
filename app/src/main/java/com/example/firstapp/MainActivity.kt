@@ -16,8 +16,8 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.ui.platform.ComposeView
 import androidx.core.app.ActivityCompat
-import com.example.firstapp.ui.CustomToastContent
-import com.example.firstapp.ui.MainScreen
+import com.example.firstapp.data.LibraryItem
+import com.example.firstapp.ui.LibraryScreen
 import com.example.firstapp.ui.theme.FirstAppTheme
 
 class MainActivity : AppCompatActivity() {
@@ -26,126 +26,20 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        val items = listOf(
+            LibraryItem("Chill Vibes", "Playlist • 24 songs", "https://lh3.googleusercontent.com/aida-public/AB6AXuAPdTsiPZKoyLsiOuZsrk4ed_2BuYE8jwvNkXNbHJVr8w3VasDKKKXvnt6JAFeCBpYTwDk5vaxgcrt1zCWLyAd4K2PxEyd6trN8sekOzvHhZh5a6RbIkrq8riCxJsBwwaVdbAGH0OFa3yj86C767s_ffJCQHGIuHW-LQyzCkMkg67T00Z_vQrdUO4C99d0BlHxHK7DOnUSH-pWVMp61HfkFkN33ER9_QsdBUUAHVgFiTNLklFG7SjomOf3LbDEpdxvb_rsUIvgylIo"),
+            LibraryItem("Ethan Carter", "Artist", "https://lh3.googleusercontent.com/aida-public/AB6AXuCU8NiBOqTmpaiPTh2xOAhgoevLcyrYiIKbxZKxHtnCfyxta--iF_t6sKKPKCAykw1lEqgLi_6odPtamtkaJNfmbbLAss4GhKzCCwoT6rGwg4BAq684L3H_lwZqVAXPVDeHbxWk49Eij4UlSIPW4GJBu19wFjOl1XOCYbewahXFqWmS6plTZaaqfyyhmUiZFZLRVQJHiRydYMab8M-6JvqEqY2Qlbvhoax8ebwL1R1NEIqYKif9padFqtjJugqk67Ep6Ht5wIYYGdg", true),
+            LibraryItem("Midnight Echoes", "Album", "https://lh3.googleusercontent.com/aida-public/AB6AXuB0mrxX9aE0XQqf7d80x5KP9fcSuvQi9a3MLNFHpYkRIoJHq3BlX1CyHPp9COwhg36Lzb1das26D2DD7F39XSSWDs4EjAp4kPkB7Ax5cLVtFCA17pwCTccWVBwWZaioVHgX1NnFl8Vx_9Anjn8NZWdUMGZ3dyOjlnBjxSdOcS_ArSoGNBKE7zE2BuApJa_lKNYWkmuGpsSBAZvNBE16DLRi3t_GDOwcLNEnEFu9J6fgKUeBusE_CT5cx9R1z2vwDWCcCSGoIJtZ1FY"),
+            LibraryItem("Road Trip Mix", "Playlist • 35 songs", "https://lh3.googleusercontent.com/aida-public/AB6AXuBDjMgM4CxUojL0Tj9Iu3ss5vh9WYY8A87ADqwYEd626UygreWghzS7kpkGyXE9SzIRjWe78hX4KNDEpKCCBu4rWBGMmHB65ttYYJ5zsORJVrarX8N-9IQr15FQBcNxvLTsj5K_ToHoURzV71BDckyMpsl0SdpW0m9f1XDxf9V3jbl4hXxfZ_A-99j1tu3pWLavYmxOmuQfyPrCPrHINnVVQVteJduT7B0oU7MbPRwScNivN-Wr-eAF4voDzTbizoAcWPAE-TKfHXU"),
+            LibraryItem("Olivia Hayes", "Artist", "https://lh3.googleusercontent.com/aida-public/AB6AXuBsS3ReebwM1kwTVVl62JXOK71FaoDiRVifes03VEa9CF0fmK-NKTTvUwCfC8H3yqd003u0E0qr8cNf98YNt6-gdxDo6mNyLQ8IkVfEzLGtsTaKyrZsayXka07l2Xiu_roxmwmzQWzwhddo2URxsq31W3q4mcv_yiM69EcUk6E_FzTFvtBrNuT6HBVL8aQ5kcfd9MDBxuCdquLIOWWr6VRZwZyzB512BCcyZQCRkM4JY2nB0XFszkSK0ebCIq9aD4ptdqLTaRZmldI", true),
+            LibraryItem("Urban Dreams", "Album", "https://lh3.googleusercontent.com/aida-public/AB6AXuCgYLLMhh8r8CkHYqZoiCD_8qvEysfigybLxJNDSX1GNgQqgPa7ew43D92e5KyioidRvShGv0E8mYGHntZXf1Dq3-eWyez4t7axn_7duf-Wi_N8yZ2RXzA9u0awAL9NcEAl1qgby4bWJ4KbKW1XZ2wfzaS4ta2ltGinsEfolfyPOKn29UXGDIs_Px5GNYkya1xqG9yhWxOhpEfpBz2PXy9Lmx-poheFF_jpxUBc3hcc64w4G6uGdNhxeoUCRWw8g2IESlzzA6uKfkQ")
+        )
+
         setContent {
             FirstAppTheme {
-                MainScreen(
-                    onApplyClick = { person ->
-                        Log.d("MainActivity", "${person.firstName} ${person.lastName} born on ${person.birthDate}, from ${person.country} just applied to the formular")
-                        Intent(this, SecondActivity::class.java).also {
-                            it.putExtra("EXTRA_PERSON", person)
-                            startActivity(it)
-                        }
-                    },
-                    onRecyclerViewClick = {
-                        Intent(this, RecyclerviewActivity::class.java).also {
-                            startActivity(it)
-                        }
-                    },
-                    onFragmentClick = {
-                        Intent(this, FragmentActivity::class.java).also {
-                            startActivity(it)
-                        }
-                    },
-                    onLibraryClick = {
-                        Intent(this, LibraryActivity::class.java).also {
-                            startActivity(it)
-                        }
-                    },
-                    onRequestPermissions = {
-                        requestPermissions()
-                    },
-                    onShowDialog1 = {
-                        showDialog1()
-                    },
-                    onShowDialog2 = {
-                        showDialog2()
-                    },
-                    onShowDialog3 = {
-                        showDialog3()
-                    },
-                    onShowCustomToast = {
-                        showCustomToast()
-                    }
-                )
+                LibraryScreen(items = items)
             }
         }
-    }
-
-    private fun showDialog1() {
-        AlertDialog.Builder(this)
-            .setTitle("Add Contact")
-            .setMessage("Do you want to add Jane to your contacts")
-            .setIcon(R.drawable.ic_add_contact)
-            .setPositiveButton("yes") { _, _ ->
-                Toast.makeText(this, "You added Jane to your contacts", Toast.LENGTH_SHORT).show()
-            }
-            .setNegativeButton("No") { _, _ ->
-                Toast.makeText(this, "You did not add Jane to your contacts", Toast.LENGTH_SHORT).show()
-            }.show()
-    }
-
-    private fun showDialog2() {
-        val options = arrayOf("First item", "Second Item", "Third Item")
-        AlertDialog.Builder(this)
-            .setTitle("Choose one of these options")
-            .setSingleChoiceItems(options, 0) { _, i ->
-                Toast.makeText(this, "You clicked on ${options[i]}", Toast.LENGTH_SHORT).show()
-            }
-            .setPositiveButton("Accept") { _, _ ->
-                Toast.makeText(this, "You accepted the single choice dialog", Toast.LENGTH_SHORT).show()
-            }
-            .setNegativeButton("Decline") { _, _ ->
-                Toast.makeText(this, "You declined the single choice dialog", Toast.LENGTH_SHORT).show()
-            }.show()
-    }
-
-    private fun showDialog3() {
-        val options = arrayOf("First item", "Second Item", "Third Item")
-        AlertDialog.Builder(this)
-            .setTitle("Choose one of these options")
-            .setMultiChoiceItems(options, booleanArrayOf(false, false, false)) { _, i, isChecked ->
-                if (isChecked) {
-                    Toast.makeText(this, "You checked  ${options[i]}", Toast.LENGTH_SHORT).show()
-                } else {
-                    Toast.makeText(this, "You unchecked  ${options[i]}", Toast.LENGTH_SHORT).show()
-                }
-            }
-            .setPositiveButton("Accept") { _, _ ->
-                Toast.makeText(this, "You accepted the multi choice dialog", Toast.LENGTH_SHORT).show()
-            }
-            .setNegativeButton("Decline") { _, _ ->
-                Toast.makeText(this, "You declined the multi choice dialog", Toast.LENGTH_SHORT).show()
-            }.show()
-    }
-
-    private fun showCustomToast() {
-        val composeView = ComposeView(this).apply {
-            setContent {
-                CustomToastContent()
-            }
-        }
-        Toast(this).apply {
-            duration = Toast.LENGTH_LONG
-            setGravity(Gravity.BOTTOM, 0, 100)
-            view = composeView
-            show()
-        }
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.app_bar_menu, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when(item.itemId) {
-            R.id.miSettings -> Toast.makeText(this, "You clicked on Settings", Toast.LENGTH_SHORT).show()
-            R.id.miAddContact -> Toast.makeText(this, "You clicked on Add Contact", Toast.LENGTH_SHORT).show()
-            R.id.miFavorites -> Toast.makeText(this, "You clicked on Favorites", Toast.LENGTH_SHORT).show()
-            R.id.miFeedback -> Toast.makeText(this, "You clicked on Feedback", Toast.LENGTH_SHORT).show()
-            R.id.miClose -> finish()
-        }
-        return super.onOptionsItemSelected(item)
     }
 
     @RequiresApi(Build.VERSION_CODES.UPSIDE_DOWN_CAKE)
