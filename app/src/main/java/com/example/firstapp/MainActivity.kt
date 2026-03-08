@@ -11,16 +11,36 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.ui.platform.ComposeView
 import androidx.core.app.ActivityCompat
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.firstapp.data.LibraryItem
+import com.example.firstapp.data.spotify.SpotifyAuthManager
+import com.example.firstapp.presentation.dashboard.SpotifyViewModel
+import com.example.firstapp.presentation.dashboard.screens.home.SpotifyLoginScreen
 import com.example.firstapp.ui.LibraryScreen
 import com.example.firstapp.ui.theme.FirstAppTheme
 
 class MainActivity : AppCompatActivity() {
+
+    companion object  {
+        const val SPOTIFY_REQUEST_CODE = 1001
+    }
+
+//    private lateinit var spotifyAuthManager: SpotifyAuthManager
+    private val viewModel: SpotifyViewModel by viewModels()
+
+    private val spotifyAuthManager by lazy {
+        SpotifyAuthManager(
+            clientId = "820ab3eda20d472594182259583e8363",
+            redirectUri = "com.example.firstapp://callback"
+
+        )
+    }
 
     @RequiresApi(Build.VERSION_CODES.UPSIDE_DOWN_CAKE)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,11 +57,19 @@ class MainActivity : AppCompatActivity() {
 
         setContent {
             FirstAppTheme {
-                LibraryScreen(items = items)
+                SpotifyLoginScreen(
+                    viewModel = viewModel,
+                    spotifyAuthManager = spotifyAuthManager
+                )
+//                LibraryScreen(items = items)
             }
         }
     }
 
+
+
+
+    //These are permissions could be used later in the project
     @RequiresApi(Build.VERSION_CODES.UPSIDE_DOWN_CAKE)
     private fun hasWriteExternalStoragePermission() =
         ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_MEDIA_VISUAL_USER_SELECTED) == PackageManager.PERMISSION_GRANTED

@@ -29,6 +29,9 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
+
+        manifestPlaceholders["redirectSchemeName"] = "com.example.firstapp"
+        manifestPlaceholders["redirectHostName"] = "callback"
     }
 
 
