@@ -1,5 +1,6 @@
 package com.example.firstapp.data
 
+import com.example.firstapp.data.spotify.SpotifyAuthManager
 import com.example.firstapp.domain.repository.SpotifyRepositoryInterface
 
 class SpotifyRepositoryImpl(
