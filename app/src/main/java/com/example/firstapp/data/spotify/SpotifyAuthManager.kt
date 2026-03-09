@@ -19,7 +19,7 @@ class SpotifyAuthManager(
             AuthorizationResponse.Type.CODE,
             redirectUri
         )
-            .setScopes(arrayOf("User-read-email"))
+            .setScopes(arrayOf("user-read-email"))
             .build()
 
         return AuthorizationClient.createLoginActivityIntent(activity, request)
