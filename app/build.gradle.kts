@@ -87,4 +87,6 @@ dependencies {
     ksp(libs.hilt.compiler)
     implementation(libs.androidx.navigation.compose)
     implementation(libs.spotify.auth)
+    implementation(libs.okhttp)
+    implementation(libs.okhttp.logging.interceptor)
 }
