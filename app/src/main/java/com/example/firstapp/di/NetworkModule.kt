@@ -14,7 +14,7 @@ object NetworkModule {
     @InstallIn(SingletonComponent::class)
     object NetworkModule {
 
-        @Provides
+//        @Provides
     }
 
 }

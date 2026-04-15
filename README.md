@@ -20,7 +20,7 @@ Inject with Hilt properly
 
 Convert everything to fully suspend-based flow
 
-# 🧠 Final Architecture
+#  Final Architecture
 
 SpotifyLoginScreen (Composable)
 ↓
@@ -86,7 +86,7 @@ di/
 SpotifyModule
 
 
-# 🧠 Final Flow
+# Final Flow
 User taps Login
 ↓
 Compose Button
