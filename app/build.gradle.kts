@@ -89,4 +89,6 @@ dependencies {
     implementation(libs.spotify.auth)
     implementation(libs.okhttp)
     implementation(libs.okhttp.logging.interceptor)
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
 }
