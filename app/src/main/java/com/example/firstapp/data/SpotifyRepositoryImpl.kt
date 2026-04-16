@@ -2,8 +2,9 @@ package com.example.firstapp.data
 
 import com.example.firstapp.data.spotify.SpotifyAuthManager
 import com.example.firstapp.domain.repository.SpotifyRepositoryInterface
+import javax.inject.Inject
 
-class SpotifyRepositoryImpl(
+class SpotifyRepositoryImpl @Inject constructor(
     private val authManager: SpotifyAuthManager
 ) : SpotifyRepositoryInterface {
     override suspend fun login(): Result<String> {
