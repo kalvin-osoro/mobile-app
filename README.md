@@ -106,3 +106,14 @@ Extract auth code
 Send to ViewModel
 ↓
 UI updates
+
+# Industry standard is:
+UI
+↓
+ViewModel
+↓
+UseCase
+↓
+Repository
+↓
+AuthManager

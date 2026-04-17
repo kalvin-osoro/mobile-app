@@ -39,6 +39,18 @@ class AuthInterceptor @Inject constructor(
         }
         return response
     }
-
-
 }
+
+//class AuthInterceptor @Inject constructor(
+//    private val tokenStorage: SecureTokenStorage
+//) : Interceptor {
+//    override fun intercept(chain: Interceptor.Chain): Response {
+//        val token = tokenStorage.accessToken()
+//
+//        val request = chain.request().newBuilder()
+//            .addHeader("Authorization", "Bearer $token")
+//            .build()
+//
+//        return chain.proceed(request)
+//    }
+//}

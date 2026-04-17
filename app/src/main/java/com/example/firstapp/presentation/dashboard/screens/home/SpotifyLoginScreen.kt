@@ -25,8 +25,9 @@ import com.example.firstapp.data.spotify.SpotifyAuthManager
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SpotifyLoginScreen(viewModel: SpotifyViewModel,
-                       spotifyAuthManager: SpotifyAuthManager) {
+fun SpotifyLoginScreen(
+    viewModel: SpotifyViewModel,
+    spotifyAuthManager: SpotifyAuthManager) {
 
 //    val activity = LocalContext.current as Activity
     val context = LocalContext.current
@@ -38,6 +39,8 @@ fun SpotifyLoginScreen(viewModel: SpotifyViewModel,
         rememberLauncherForActivityResult(
             contract = ActivityResultContracts.StartActivityForResult()
         ) { result ->
+
+            Log.d("SpotifyAuth", "Result received")
 
             val code = spotifyAuthManager.getAuthCode(
                 result.resultCode,
@@ -63,7 +66,6 @@ fun SpotifyLoginScreen(viewModel: SpotifyViewModel,
                 .padding(padding),
             contentAlignment = Alignment.Center
         ) {
-
             Button(
                 onClick = {
                     Log.d("Spotify", "Login button clicked")

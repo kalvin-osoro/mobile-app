@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.util.Base64
+import android.util.Log
 import com.spotify.sdk.android.auth.AuthorizationClient
 import com.spotify.sdk.android.auth.AuthorizationRequest
 import com.spotify.sdk.android.auth.AuthorizationResponse
@@ -84,10 +85,30 @@ class SpotifyAuthManager(
     }
 
     fun getAuthCode(resultCode: Int, intent: Intent?): String? {
+
         val response = AuthorizationClient.getResponse(resultCode, intent)
 
-        return if (response.type == AuthorizationResponse.Type.CODE) {
-            response.code
-        } else null
+        Log.d("SpotifyAuth", "Response type: ${response.type}")
+
+        when (response.type) {
+            AuthorizationResponse.Type.CODE -> {
+                Log.d("SpotifyAuth", "Auth code received: ${response.code}")
+                return response.code
+            }
+            AuthorizationResponse.Type.ERROR -> {
+                Log.e("SpotifyAuth", "Auth error: ${response.error}")
+            }
+            AuthorizationResponse.Type.TOKEN -> {
+                Log.d("SpotifyAuth", "Access token received")
+            }
+            else -> {
+                Log.d("SpotifyAuth", "Unknown response")
+            }
+        }
+        return null
+
+//        return if (response.type == AuthorizationResponse.Type.CODE) {
+//            response.code
+//        } else null
     }
 }
