@@ -11,7 +11,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SpotifyViewModel @Inject constructor(
-    private val tokenRepoitory: TokenRepository
+    private val tokenRepository: TokenRepository
 ) : ViewModel() {
     private val _authCode = MutableStateFlow<String?>(null)
     val authCode: StateFlow<String?> = _authCode
@@ -28,7 +28,7 @@ class SpotifyViewModel @Inject constructor(
     private fun exchangeToken(code: String) {
         viewModelScope.launch {
             _uiState.value = AuthUiState.Loading
-            tokenRepoitory.exchangeCodeForTokens(code)
+            tokenRepository.exchangeCodeForTokens(code)
                 .onSuccess { _uiState.value = AuthUiState.Success }
                 .onFailure { _uiState.value =AuthUiState.Error(it.message) }
         }
