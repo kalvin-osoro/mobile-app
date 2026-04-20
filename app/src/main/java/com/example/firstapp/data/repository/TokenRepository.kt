@@ -1,6 +1,6 @@
 package com.example.firstapp.data.repository
 
-import com.example.firstapp.data.model.TokenResponse
+import com.example.firstapp.data.model.response.TokenResponse
 import com.example.firstapp.data.spotify.SpotifyAuthManager
 import com.example.firstapp.data.spotify.SpotifyTokenService
 import javax.inject.Inject

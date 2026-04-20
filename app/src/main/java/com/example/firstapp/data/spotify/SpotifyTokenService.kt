@@ -1,6 +1,9 @@
 package com.example.firstapp.data.spotify
 
-import com.example.firstapp.data.model.TokenResponse
+import com.example.firstapp.data.model.response.TokenResponse
+import retrofit2.http.Field
+import retrofit2.http.FormUrlEncoded
+import retrofit2.http.POST
 
 interface SpotifyTokenService {
 
