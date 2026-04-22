@@ -1,4 +1,4 @@
-package com.example.firstapp.data
+package com.example.firstapp.data.repository
 
 import com.example.firstapp.data.spotify.SpotifyAuthManager
 import com.example.firstapp.domain.repository.SpotifyRepositoryInterface

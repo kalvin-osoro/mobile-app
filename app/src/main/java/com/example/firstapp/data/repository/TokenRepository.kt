@@ -10,7 +10,7 @@ import javax.inject.Singleton
 class TokenRepository @Inject constructor(
     private val tokenService: SpotifyTokenService,
     private val authManager: SpotifyAuthManager,
-    private val prefs: EncryptedTokenPrefs
+    private val prefs: SecureTokenStorage
 )  {
 
     suspend fun exchangeCodeForTokens(code: String): Result<TokenResponse> {

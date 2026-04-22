@@ -91,4 +91,10 @@ dependencies {
     implementation(libs.okhttp.logging.interceptor)
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
+    implementation(libs.androidx.security.crypto)
+    implementation(libs.moshi.kotlin)
+    implementation(libs.retrofit.converter.moshi)
+    implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.room.ktx)
+    ksp(libs.androidx.room.compiler)
 }
